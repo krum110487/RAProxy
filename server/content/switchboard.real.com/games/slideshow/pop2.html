@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>RealArcade - Test</title>
+<script language="Javascript">
+
+
+function MM_checkPlugin(plgIn, theURL, altURL, autoGo) { //v3.0
+  var ok=false; document.MM_returnValue = false;
+  with (navigator) if (appName.indexOf('Microsoft')==-1) ok=(plugins && plugins[plgIn]);
+  else if (appVersion.indexOf('3.1')==-1) { //not Netscape or Win3.1
+    if (plgIn.indexOf("Flash")!=-1 && window.MM_flash!=null) ok=window.MM_flash;
+    else if (plgIn.indexOf("Director")!=-1 && window.MM_dir!=null) ok=window.MM_dir;
+    else ok=autoGo; }
+  if (!ok) theURL=altURL + '?orca='; 
+	
+} 
+
+
+
+</script>
+
+</head>
+<body onLoad="MM_checkPlugin('Shockwave for Director','index.html','index.html',true);return document.MM_returnValue">
+</body>
+</html>

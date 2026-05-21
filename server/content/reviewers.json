@@ -1,0 +1,22 @@
+{
+    "reviewers": [
+        {
+            "userId": "krum110487",
+            "username": "Krum110487",
+            "location": "IN",
+            "favoriteGames": [
+                "Backyard Baseball",
+                "Other Games",
+                "Another Game"
+            ]
+        },
+        {
+            "userId": "thebowlfosho",
+            "username": "TheBolwFoSho",
+            "location": "Some Place",
+            "favoriteGames": [
+                "One Game"
+            ]
+        }
+    ]
+}

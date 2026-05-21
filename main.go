@@ -4,51 +4,90 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strings"
+	"time"
 
 	"github.com/elazarl/goproxy"
+	"github.com/krum110487/RAProxy/server"
 )
+
+/* func main() {
+	//setupProxy()
+
+	//Overwrite the other handlers
+	http.HandleFunc("/games/arcade", arcadeHandler)
+	http.HandleFunc("/arcade/download.html", downloadHandler)
+	http.HandleFunc("/arcade/feeds.html", feedsHandler)
+	http.HandleFunc("/arcade/sites.html", sitesHandler)
+	http.HandleFunc("/pics/real/games/slideshow/", slideshowHandler)
+	http.HandleFunc("/track/", trackHandler)
+
+	//Handle the static files...
+	http.HandleFunc("/", staticHandler)
+
+	//Listen and Serve
+	http.ListenAndServe(":80", nil)
+
+} */
 
 func main() {
 	proxy := goproxy.NewProxyHttpServer()
-	proxy.Verbose = true
-	proxy.NonproxyHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Printf("Non Proxy Request: %s\n", r.URL.Host+r.URL.Path)
-	})
+	proxy.Verbose = false
 
+	//TODO: Update to Dynamic path
+	ServerRoot := "/server/content"
+
+	//Handle the requests seperate for when it requests
+	rh := server.RouteHandler{ServerRoot: ServerRoot}
+
+	//Load Game specific info into memory
+	rh.LoadGameInfo("gameInfo.json")
+
+	//Load Reviewer Specific info into memory
+	rh.LoadReviewerInfo("reviewers.json")
+
+	//Open SQLite DB, migrate schema, and seed from existing JSON review files
+	db, err := server.NewDB("./reviews.db")
+	if err != nil {
+		log.Fatal("open DB:", err)
+	}
+	rh.DB = db
+	rh.MigrateJSONReviews()
+
+	//Start Discord sync if DISCORD_BOT_TOKEN is set (read-only, RealGuides category)
+	ds, discordErr := server.NewDiscordSync(db, &rh.Games)
+	if discordErr != nil {
+		log.Printf("Discord sync disabled: %v", discordErr)
+	} else {
+		go ds.SyncPeriodically(10 * time.Minute)
+	}
+
+	proxy.NonproxyHandler = rh
+
+	//Capture every request and route it to content
 	proxy.OnRequest().DoFunc(func(r *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
-		fmt.Printf("Proxy Request: %s\n", r.URL.Host+r.URL.Path)
-		newURL := *r.URL
-		if strings.HasSuffix(newURL.Host, "real.com") {
-			newURL.Host = "52.188.84.124"
+		//fmt.Printf("\nProxy Request: http://%s\n", r.URL.Host+r.URL.Path)
+
+		localFile := "http://127.0.0.1:33500" + ServerRoot + "/" + r.URL.Hostname() + r.URL.Path
+		if r.URL.RawQuery != "" {
+			localFile += "?" + r.URL.RawQuery
 		}
 
-		if newURL.Host == "game-dl.real.com" {
-			newURL.Host = "52.224.233.122"
-		}
+		//fmt.Println("\tProxied to: " + localFile)
 
-		//Redirect:
-		if strings.HasPrefix(r.URL.Path, "/arcade/sites.html") {
-			newURL.Path = "/games/slideshow/twistytracks/index.html"
-			res := http.Response{}
-			res.StatusCode = 301
-			res.Header.Add("Location", newURL.String())
-			return r, &res
-		}
-
-		//Make the request to the zip server.
+		//Make request to local file.
 		client := &http.Client{}
-		proxyReq, err := http.NewRequest(r.Method, newURL.String(), r.Body)
+		proxyReq, _ := http.NewRequest(r.Method, localFile, r.Body)
 		proxyReq.Header = r.Header
-		proxyResp, err := client.Do(proxyReq)
+		proxyResp, _ := client.Do(proxyReq)
 
-		if proxyResp.StatusCode < 400 {
-			fmt.Printf("Failed request with: ", err)
+		if proxyResp.StatusCode >= 400 {
+			fmt.Printf("Failed request (%d): %s %s\n", proxyResp.StatusCode, proxyResp.Request.Method, proxyReq.URL)
 		}
 
 		//Return the new response
 		return r, proxyResp
 	})
 
-	log.Fatal(http.ListenAndServe(":3127", proxy))
+	//TODO: Make non-static port...
+	log.Fatal(http.ListenAndServe(":33500", proxy))
 }

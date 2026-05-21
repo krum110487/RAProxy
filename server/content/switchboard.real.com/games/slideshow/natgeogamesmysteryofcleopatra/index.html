@@ -1,0 +1,164 @@
+
+
+
+<html>
+<head>
+<script language="javascript">
+var queryString = window.location.search;
+if (queryString.length > 0) 
+{
+	var currentImage = unescape(queryString.substring(17,18));
+}
+
+
+function loadImages()
+{
+	var image1 = new Image();
+	image1.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_1_lg.jpg";
+	var bigImage = new Image();
+	document.images.bigImage.src = image1.src;
+	selectedSelector(currentImage);
+	var image2 = new Image();
+	image2.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_2_lg.jpg";
+	var image3 = new Image();
+	image3.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_3_lg.jpg";
+	var image4 = new Image();
+	image4.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_4_lg.jpg";
+	var image5 = new Image();
+	image5.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_5_lg.jpg";
+	var image6 = new Image();
+	image6.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_6_lg.jpg";
+}
+
+function selectedSelector(currentImage) {
+
+	document.images.nav1.src = 'http://images.real.com/pics/real/games/slideshow/control_1.gif';
+	document.images.nav2.src = 'http://images.real.com/pics/real/games/slideshow/control_2.gif';
+	document.images.nav3.src = 'http://images.real.com/pics/real/games/slideshow/control_3.gif';
+	document.images.nav4.src = 'http://images.real.com/pics/real/games/slideshow/control_4.gif';
+	document.images.nav5.src = 'http://images.real.com/pics/real/games/slideshow/control_5.gif';
+	document.images.nav6.src = 'http://images.real.com/pics/real/games/slideshow/control_6.gif';
+	if (currentImage == 1) { 
+		document.images.nav1.src = 'http://images.real.com/pics/real/games/slideshow/control_1sel.gif';
+	} else if (currentImage == 2) {
+		document.images.nav2.src = 'http://images.real.com/pics/real/games/slideshow/control_2sel.gif';
+	} else if (currentImage == 3) {
+		document.images.nav3.src = 'http://images.real.com/pics/real/games/slideshow/control_3sel.gif';
+	} else if (currentImage == 4) {
+		document.images.nav4.src = 'http://images.real.com/pics/real/games/slideshow/control_4sel.gif';
+	} else if (currentImage == 5) {
+		document.images.nav5.src = 'http://images.real.com/pics/real/games/slideshow/control_5sel.gif';
+	} else if (currentImage == 6) {
+		document.images.nav6.src = 'http://images.real.com/pics/real/games/slideshow/control_6sel.gif';
+	} 
+}
+
+function swapImage(newImage)
+{
+	document.images.bigImage.src ="http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_"+newImage+"_lg.jpg";
+	currentImage = newImage;
+	selectedSelector(newImage);
+	
+}
+
+function next() 
+{
+	if (currentImage <6) 
+	{
+		currentImage++;
+		document.images.bigImage.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_"+currentImage+"_lg.jpg";
+		selectedSelector(currentImage);
+	} else {
+		currentImage = 1;
+		document.images.bigImage.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_"+currentImage+"_lg.jpg";
+		selectedSelector(currentImage);
+	}
+}
+
+function previous() 
+{
+	if (currentImage> 1) 
+	{
+		currentImage--;
+		document.images.bigImage.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_"+currentImage+"_lg.jpg";
+		document.images.nav6.src = '../editors/pics/slideshow/images2/control_6sel.gif'
+		selectedSelector(currentImage);
+	} else {
+		currentImage = 6;
+		document.images.bigImage.src = "http://images.real.com/pics/real/games/slideshow/natgeogamesmysteryofcleopatra_"+currentImage+"_lg.jpg";
+		selectedSelector(currentImage);
+	}
+}
+
+function Mover(which) {
+	if (currentImage != which) {
+		if (which == 1) {
+		document.nav1.src='http://images.real.com/pics/real/games/slideshow/control_1mo.gif';
+		} else if (which == 2) {
+		document.nav2.src='http://images.real.com/pics/real/games/slideshow/control_2mo.gif';
+		} else if (which == 3) {
+		document.nav3.src='http://images.real.com/pics/real/games/slideshow/control_3mo.gif';
+		} else if (which == 4) {
+		document.nav4.src='http://images.real.com/pics/real/games/slideshow/control_4mo.gif';
+		} else if (which == 5) {
+		document.nav5.src='http://images.real.com/pics/real/games/slideshow/control_5mo.gif';
+		} else if (which == 6) {
+		document.nav6.src='http://images.real.com/pics/real/games/slideshow/control_6mo.gif';
+		}
+	}
+}
+
+function Mout(which) {
+	if (currentImage != which) {
+		if (which == 1) {
+		document.nav1.src='http://images.real.com/pics/real/games/slideshow/control_1.gif';
+		} else if (which == 2) {
+		document.nav2.src='http://images.real.com/pics/real/games/slideshow/control_2.gif';
+		} else if (which == 3) {
+		document.nav3.src='http://images.real.com/pics/real/games/slideshow/control_3.gif';
+		} else if (which == 4) {
+		document.nav4.src='http://images.real.com/pics/real/games/slideshow/control_4.gif';
+		} else if (which == 5) {
+		document.nav5.src='http://images.real.com/pics/real/games/slideshow/control_5.gif';
+		} else if (which == 6) {
+		document.nav6.src='http://images.real.com/pics/real/games/slideshow/control_6.gif';
+		}
+	}
+}
+
+</script>
+</head>
+
+<body bgcolor="#000000" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" onLoad="loadImages();">
+<center>
+<table height="200" width="596" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td valign="top"><img src="http://images.real.com/pics/real/games/slideshow/control_tile.gif" width="74" height="36" border="0"><a href="javascript: previous();" 
+		onMouseOver="document.back.src='http://images.real.com/pics/real/games/slideshow/control_backmo.gif';" onMouseOut="document.back.src='http://images.real.com/pics/real/games/slideshow/control_back.gif';"><img src="http://images.real.com/pics/real/games/slideshow/control_back.gif" 
+		name="back" width="35" height="36" border="0"></a><img src="../editors/pics/slideshow/images2/control_tile.gif" width="24" height="36" border="0"><a href="javascript:swapImage('1')" 
+		onMouseOver="javascript:Mover(1);" onMouseOut="javascript:Mout(1);"><img src="http://images.real.com/pics/real/games/slideshow/control_1.gif" name="nav1" 
+		width="35" height="36" border="0"></a><img src="../editors/pics/slideshow/images2/control_tile.gif" width="24" height="36" border="0"><a href="javascript:swapImage('2')" 
+		onMouseOver="javascript:Mover(2);" onMouseOut="javascript:Mout(2);"><img src="http://images.real.com/pics/real/games/slideshow/control_2.gif" name="nav2" 
+		width="35" height="36" border="0"></a><img src="../editors/pics/slideshow/images2/control_tile.gif" width="24" height="36" border="0"><a href="javascript:swapImage('3')" 
+		onMouseOver="javascript:Mover(3);" onMouseOut="javascript:Mout(3);"><img src="http://images.real.com/pics/real/games/slideshow/control_3.gif" name="nav3" 
+		width="35" height="36" border="0"></a><img src="../editors/pics/slideshow/images2/control_tile.gif" width="24" height="36" border="0"><a href="javascript:swapImage('4')" 
+		onMouseOver="javascript:Mover(4);" onMouseOut="javascript:Mout(4);"><img src="http://images.real.com/pics/real/games/slideshow/control_4.gif" name="nav4" 
+		width="35" height="36" border="0"></a><img src="../editors/pics/slideshow/images2/control_tile.gif" width="24" height="36" border="0"><a href="javascript:swapImage('5')" 
+		onMouseOver="javascript:Mover(5);" onMouseOut="javascript:Mout(5);"><img src="http://images.real.com/pics/real/games/slideshow/control_5.gif" name="nav5" 
+		width="35" height="36" border="0"></a><img src="../editors/pics/slideshow/images2/control_tile.gif" width="24" height="36" border="0"><a href="javascript:swapImage('6')" 
+		onMouseOver="javascript:Mover(6);" onMouseOut="javascript:Mout(6);"><img src="http://images.real.com/pics/real/games/slideshow/control_6.gif" name="nav6" 
+		width="35" height="36" border="0"></a><img src="http://images.real.com/pics/real/games/slideshow/control_tile.gif" width="24" height="36" border="0"><a href="javascript: next();" 
+		onMouseOver="document.next.src='http://images.real.com/pics/real/games/slideshow/control_nextmo.gif';" onMouseOut="document.next.src='http://images.real.com/pics/real/games/slideshow/control_next.gif';"><img src="http://images.real.com/pics/real/games/slideshow/control_next.gif" name="next" 
+		width="35" height="36" border="0"></a><img src="http://images.real.com/pics/real/games/slideshow/control_tile.gif" width="75" height="36" border="0"></td>
+	</tr>
+	<tr>
+		<td valign="top"><img src="" border="0" width="596" height="480" name="bigImage"><span name="1"></span><br></td>
+	</tr>
+</table>
+</center>
+</body>
+</html>
+
+
+
+

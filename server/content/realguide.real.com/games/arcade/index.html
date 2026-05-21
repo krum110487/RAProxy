@@ -1,0 +1,133 @@
+<html style="--wm-toolbar-height: 67px;">
+   <head>
+      <link rel="STYLESHEET" type="text/css" href="http://realguide.real.com/4plus/netscape_styles_.css">
+      <script src="http://realguide.real.com/4plus/main_.js" language="JavaScript"></script>
+      <script>pageid = "RG-us.(/games/?s={{.reviewId}})";</script>
+      <title>
+         Real.com - 
+         Guide -  - 
+         {{.title}}
+      </title>
+   </head>
+   <body vlink="000000" alink="000000" link="000000" text="#000000" bgcolor="">
+      <center>
+         <table width="770" cellpadding="0" cellspacing="0" border="0" height="0">
+            <tbody>
+               <tr>
+                  <td colspan="2" valign="top" align="left" bgcolor="ffffff">
+                     <br class="t5">
+                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                           <tr>
+                              <td rowspan="4">&nbsp;&nbsp;</td>
+                              <td colspan="3" class="s2" bgcolor="99cc66">&nbsp;<b>{{.title}}</b><br>
+                              </td>
+                              <td rowspan="4">&nbsp;&nbsp;</td>
+                           </tr>
+                           <tr>
+                              <td align="left" valign="top"><img src="http://i.real.com/g/editors/pics/us/scpics/{{.topImage}}" width="320" border="0" alt="{{.title}}" height="106"><br></td>
+                              <td rowspan="2">&nbsp;&nbsp;</td>
+                              <td valign="middle" align="left">
+                                 <a href="http://realguide.real.com/RGI/RG-us.(/games/?s={{.reviewId}}).center.txt..RGI/games/?s=game_download&amp;sub=backyardbaseball"><b>Download Full Version</b></a><br>
+                                 <font class="s">Just <b>$9.99</b></font><br>
+                                 <span class="t2"><br></span>
+                                 <a href="http://realguide.real.com/RGI/RG-us.(/games/?s={{.reviewId}}).center.txt..RGI/games/?s=game_download&amp;sub=backyardbaseball"><b>Download Free Version</b></a><br>
+                                 <span class="t5"><br></span>
+                                 <br>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td valign="bottom" align="left" class="s">
+                                 <span class="t5"><br></span>
+                                 <b>Editor's Rating</b>
+                                 <img src="http://i.real.com/g/pics/games/star_{{.Rating}}.gif" height="12" width="80"><br>
+                              </td>
+                              <td>
+                                 <span class="t5"><br></span>
+                                 <a href="http://realguide.real.com/RGI/RG-us.(/games/?s={{.reviewId}}).center...RGI/friends/tell.html?type=scpage&amp;id={{.reviewId}}"><img src="http://i.real.com/g/pics/taficon.gif" hspace="5" width="24" border="0" height="9">Tell A Friend</a><br>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td><img src="http://i.real.com/g/pics/space.gif" height="1" width="320"></td>
+                              <td class="t2">&nbsp;&nbsp;</td>
+                              <td><img src="http://i.real.com/g/pics/space.gif" height="1" width="160"></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <div align="center">
+                        <br><a href="http://realguide.real.com/RGI/RG-us.(/games/?s={{.reviewId}}).center...RGI/games/?s={{.reviewId}}&amp;type=rate"><b><font class="b" color="0066ff">Write Your Own Review!</font></b></a>
+                     </div>
+                     <span class="t5"><br></span>
+                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                           {{range .reviews}}
+                           <tr>
+                              <td class="t5"><br><br></td>
+                           </tr>
+                           <tr>
+                              <td></td>
+                              <td bgcolor="000066"><img src="http://i.real.com/g/pics/space.gif" height="1" width="1"></td>
+                           </tr>
+                           <tr>
+                              <td class="t5"><br><br></td>
+                           </tr>
+                           <tr>
+                              <td>&nbsp;&nbsp;</td>
+                              <td width="100%">
+                                 <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tbody>
+                                       <tr>
+                                          <td rowspan="3" class="s">
+                                             <b>Reviewer:</b> {{.reviewer}}<br>
+                                             <b>Version:</b> {{.version}}<br>
+                                             <b>Location:</b> {{.location}}<br>
+                                             <b>Favorite Games:</b>{{.favoriteGames}}<br>
+                                          </td>
+                                          <td>&nbsp;</td>
+                                          <td class="s"><b>Overall:</b></td>
+                                          <td></td>
+                                          <td><img src="http://i.real.com/g/pics/games/star_{{.ratingOverall}}.gif" height="12" width="80"></td>
+                                          <td>&nbsp;</td>
+                                       </tr>
+                                       <tr>
+                                          <td></td>
+                                          <td class="s"><b>Graphics:</b></td>
+                                          <td></td>
+                                          <td><img src="http://i.real.com/g/pics/games/star_{{.ratingGraphics}}.gif" height="12" width="80"></td>
+                                          <td></td>
+                                          <td class="s"><b>Learning Curve:</b></td>
+                                          <td></td>
+                                          <td><img src="http://i.real.com/g/pics/games/star_{{.ratingLearningCurve}}.gif" height="12" width="80"></td>
+                                       </tr>
+                                       <tr>
+                                          <td></td>
+                                          <td class="s"><b>Sound:</b></td>
+                                          <td></td>
+                                          <td><img src="http://i.real.com/g/pics/games/star_{{.ratingSound}}.gif" height="12" width="80"></td>
+                                          <td></td>
+                                          <td class="s"><b>Lasting Appeal:</b></td>
+                                          <td></td>
+                                          <td><img src="http://i.real.com/g/pics/games/star_{{.ratingLastingAppeal}}.gif" height="12" width="80"></td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <font class="s">
+                                 <br>
+                                 <b>Comments About the Game:</b>
+                                 <br>
+                                 {{.comments}}
+                                 </font>
+                              </td>
+                              <td>&nbsp;&nbsp;</td>
+                           </tr>
+                           {{end}}
+                        </tbody>
+                     </table>
+                     <span class="t25"><br><br></span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </center>
+   </body>
+</html>

@@ -1,0 +1,36 @@
+
+
+
+<html>
+<head>
+<title>RealArcade Game Preview</title>
+<meta http-equiv='Pragma' content='no-cache'>
+<meta http-equiv='cache-control' content='no-cache'>
+<script language="JavaScript">
+
+
+
+
+var queryString = window.location.search;
+if (queryString.length > 0) 
+{
+	var orcaCode = unescape(queryString.substring(6,12));
+	var currentImage = unescape(queryString.substring(18,17));
+}
+
+
+function pop(orcaCode,imgNumber)
+{
+	var theUrl = ('pop2.html?orca=' + orcaCode + '&img=' + imgNumber);
+	window.open(theUrl,'popup','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=596,height=516,top=100,left=100');
+}
+	
+pop(orcaCode,currentImage);
+
+
+
+</script>
+</head>
+<body>
+</body>
+</html>
